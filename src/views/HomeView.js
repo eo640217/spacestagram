@@ -7,15 +7,27 @@ import axios from "axios";
 const Home = () => {
   const [data, setData] = useState(null);
   // const key = "SPAUR3DPmUBqYsSzPqhq15SQWK74eFKJXgcgcezh";
-  const url = "https://images-api.nasa.gov/search?q=space";
+  const url = "https://images-api.nasa.gov/search?q=moon";
   useEffect(() => {
-    axios.get(url).then((response) => {
-      setData(response);
-    });
+    const getData = async () => {
+      await axios
+        .get(url)
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getData();
   }, [url]);
-
   function printData() {
-    data.data.collection.items.map((item) => console.log(item.data));
+    // data.collection.items.map((item) => console.log(item.data));
+    Object.values(data.collection.items).map((item) => {
+      return item.links[0] ? console.log(item.links[0].href) : {};
+    });
+
+    // console.log(Object.values(data.collection.items));
   }
 
   return (
@@ -27,15 +39,15 @@ const Home = () => {
         <Title title={"SPACESTAGRAM"} />
       </div>
       <div className="cards">
-        <div className="card">
-          <Card
-            title={"card 1"}
-            description={"lorem text"}
-            image={
-              "https://images.unsplash.com/photo-1446941611757-91d2c3bd3d45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=802&q=80"
-            }
-          />
-        </div>
+        {Object.values(data.collection.items).map((item) => (
+          <div className="card">
+            <Card
+              title={item.data[0].title}
+              description={item.data[0].description}
+              // image={item.links[0].href}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
