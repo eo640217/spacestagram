@@ -9,45 +9,18 @@
   --background-light-color: #f1f1f1;
   --background-light-color-2: rgba(3, 127, 255, 0.3);
   --white-color: #fff;
-  --font-light-color: #a4acc4;
-  --font-dark-color: #313131;
-  --font-dark-color-2: #151515;
-  --sidebar-dark-color: #191d2b;
-  --scrollbar-bg-color: #383838;
-  --scrollbar-thump-color: #6b6b6b;
-  --scrollbar-track-color: #383838;
-  --typewriterSpeed: 3s;
-  --typewriterCharacters: 24;
-  --surface-color: #fff;
-  --curve: 40;
-  --background-dark: #2d3548;
-  --text-light: rgba(255, 255, 255, 0.6);
-  --text-lighter: rgba(255, 255, 255, 0.9);
-  --spacing-s: 8px;
-  --spacing-m: 16px;
-  --spacing-l: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 64px;
-  --width-container: 1200px;
-
-  --bg: #dcdde1;
-  --color-icon: #535c68;
-  --social-icon1: #e4405f;
-  --social-icon2: #3b5999;
-  --social-icon3: #e4405f;
-  --social-icon4: #cd201f;
-  --social-icon5: #0077b5;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", "Martel", sans-serif;
+  font-family: "Martel", sans-serif;
   list-style: none;
   text-decoration: none;
   font-size: 1.2rem;
 }
 body {
+  background-image: url("https://images.unsplash.com/photo-1570751485906-b0bbe415db74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=708&q=80");
   background-color: var(--background-dark-color);
   color: var(--font-light-color);
 }

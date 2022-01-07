@@ -3,17 +3,20 @@ import Card from "../components/Card";
 import Title from "../components/Title";
 import "../styles/home.css";
 import axios from "axios";
+import Particle from "../components/Particle";
+import Buttons from "../components/Buttons";
 
 const Home = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
+  const [query, setQuery] = useState("space");
   // const key = "SPAUR3DPmUBqYsSzPqhq15SQWK74eFKJXgcgcezh";
-  const url = "https://images-api.nasa.gov/search?q=moon";
+  const url = `https://images-api.nasa.gov/search?q=${query}&media_type=image`;
   useEffect(() => {
     const getData = async () => {
       await axios
         .get(url)
         .then((response) => {
-          setData(response.data);
+          setData(response.data.collection.items);
         })
         .catch((err) => {
           console.log(err);
@@ -21,31 +24,41 @@ const Home = () => {
     };
     getData();
   }, [url]);
-  function printData() {
-    // data.collection.items.map((item) => console.log(item.data));
-    Object.values(data.collection.items).map((item) => {
-      return item.links[0] ? console.log(item.links[0].href) : {};
-    });
-
-    // console.log(Object.values(data.collection.items));
-  }
 
   return (
     <div className="home-container">
-      <div>
-        <button onClick={printData}>print</button>
+      <div className="nasa-logo">
+        <img
+          src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png"
+          alt="nasa-logo"
+        />
       </div>
+      <Particle
+        value={14}
+        type={"star"}
+        value_area={800}
+        color={"hsl(189, 68%, 75%)"}
+      />
       <div className="title">
         <Title title={"SPACESTAGRAM"} />
       </div>
+      <div className="bar">
+        <div className="buttons">
+          <Buttons />
+        </div>
+        <div className="searchBar">
+          <input
+            className="input"
+            type="search"
+            placeholder="search..."
+            onChange={(event) => setQuery(event.target.value || "space")}
+          />
+        </div>
+      </div>
       <div className="cards">
-        {Object.values(data.collection.items).map((item) => (
-          <div className="card">
-            <Card
-              title={item.data[0].title}
-              description={item.data[0].description}
-              // image={item.links[0].href}
-            />
+        {data.map((data, i) => (
+          <div className="card" key={i}>
+            <Card data={data} />
           </div>
         ))}
       </div>
