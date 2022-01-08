@@ -70,13 +70,13 @@ title:hover {
 } */
 
 svg text {
+  margin: 1rem;
   font-family: Lora;
   letter-spacing: 10px;
   stroke: var(--primary-color);
-  font-size: 100px;
+  font-size: clamp(2rem, 10vw, 100px);
   font-weight: 700;
   stroke-width: 3;
-
   animation: textAnimate 5s infinite alternate;
 }
 

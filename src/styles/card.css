@@ -1,6 +1,7 @@
-/* .card {
-  height: 900px;
-} */
+.card {
+  height: 750px;
+  text-align: center;
+}
 .card-img {
   display: block;
   width: 100%;
@@ -30,35 +31,38 @@
   overflow: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
+  /* border-bottom: solid 1px var(--border-color); */
   scrollbar-color: var(--border-color) var(--white-color);
 }
-
-.card-btn {
-  display: block;
-  width: 100%;
-  padding: 1.5rem;
-  font-size: 0.5rem;
+.star-btn {
   text-align: center;
-  color: #3363ff;
-  background-color: #d8e0fd;
-  border: none;
-  border-radius: 0.4rem;
-  transition: 0.2s;
   cursor: pointer;
-  letter-spacing: 0.1rem;
+  position: relative;
+  color: var(--primary-color);
+  width: 100%;
+  text-align: center;
+  transition-duration: 0.4s;
 }
 
-.card-btn span {
-  margin-left: 1rem;
-  transition: 0.2s;
+.star-btn:hover {
+  color: rgb(253, 207, 0);
 }
 
-.card-btn:hover,
-.card-btn:active {
-  background-color: #c2cffc;
+.star-btn:after {
+  content: "";
+  background: var(--primary-color);
+  display: block;
+  opacity: 0;
+  transition: all 0.8s;
 }
 
-.card-btn:hover span,
-.card-btn:active span {
-  margin-left: 1.5rem;
+.star-btn:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.star-btn:focus {
+  outline: 0;
 }
