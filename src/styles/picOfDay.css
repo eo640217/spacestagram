@@ -61,4 +61,13 @@
 }
 .astronomy input {
   margin: 0 1rem;
+  background-color: rgb(0, 0, 0, 0.05);
+  color: var(--white-color);
+  border: none;
+  transition: 0.2s ease-in-out;
+  text-transform: uppercase;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
