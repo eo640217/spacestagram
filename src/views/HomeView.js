@@ -40,7 +40,6 @@ const Home = () => {
   }
   function showPictureOfDay() {
     setDisplayAll(false);
-    console.log(process.env.REACT_APP_NASA_API_KEY);
   }
   return (
     <div className="home-container">
