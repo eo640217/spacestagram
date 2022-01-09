@@ -6,7 +6,9 @@
   width: max-content;
   margin-left: auto;
   margin-right: auto;
-  transform: translateY(80%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }
 .planet {
   text-align: center;

@@ -6,17 +6,20 @@ import "../styles/buttons.css";
 import axios from "axios";
 import Particle from "../components/Particle";
 import Loader from "../components/Loader";
+import PicOfDay from "../components/PicOfDay";
+import NasaLogo from "../components/NasaLogo";
+import Nothing from "../components/Nothing";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [favs, setFavs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("space");
-  const [displayedData, setDisplayedData] = useState(data);
+  const [date, setDate] = useState("");
   const [displayAll, setDisplayAll] = useState(true);
-
-  // const key = "SPAUR3DPmUBqYsSzPqhq15SQWK74eFKJXgcgcezh";
+  const key = process.env.REACT_APP_NASA_API_KEY;
   const url = `https://images-api.nasa.gov/search?q=${query}&media_type=image`;
+  const pictureOfdayUrl = `https://api.nasa.gov/planetary/apod?api_key=${key}&date=${date}`;
+
   useEffect(() => {
     const getData = async () => {
       await axios
@@ -33,60 +36,70 @@ const Home = () => {
   }, [url]);
 
   function showAll() {
-    setDisplayedData(data);
     setDisplayAll(true);
   }
-  function showFavs() {
-    setDisplayedData(favs);
+  function showPictureOfDay() {
     setDisplayAll(false);
+    console.log(process.env.REACT_APP_NASA_API_KEY);
   }
   return (
     <div className="home-container">
-      <div className="nasa-logo">
-        <img
-          src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png"
-          alt="nasa-logo"
-        />
-      </div>
+      <NasaLogo />
       <Particle
         value={14}
         type={"star"}
         value_area={800}
         color={"hsl(189, 68%, 75%)"}
       />
-      <div className="title">
-        <Title title={"SPACESTAGRAM"} />
-      </div>
+      <Title title={"SPACESTAGRAM"} />
       <div className="bar">
         <div className="buttons">
-          {/* <button onClick={showAll} id="allButton">
+          <button onClick={showAll} id="allButton">
             All Pictures
           </button>
-          <button onClick={showFavs} id="favButton">
-            Favourites
-          </button> */}
-        </div>
-        <div className="searchBar">
-          <input
-            className="form__input"
-            type="search"
-            placeholder="search..."
-            onChange={(event) => setQuery(event.target.value || "space")}
-          />
+          <button onClick={showPictureOfDay} id="Button">
+            Astronomy Picture of the Day
+          </button>
         </div>
       </div>
       {!loading ? (
         <div className="loader">
           <Loader />
         </div>
-      ) : (
-        <div className="cards">
-          {data.map((data, i) => (
-            <div className="card" key={i}>
-              <Card data={data} />
+      ) : displayAll ? (
+        <>
+          <div className="searchBar">
+            <input
+              className="form__input"
+              type="search"
+              placeholder="search..."
+              onChange={(event) => setQuery(event.target.value || "space")}
+            />
+          </div>
+          {data.length < 1 ? (
+            <Nothing />
+          ) : (
+            <div className="cards">
+              {data.map((data, i) => (
+                <div className="card" key={i}>
+                  <Card data={data} />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )}
+        </>
+      ) : (
+        <>
+          <div className="astronomy">
+            <label>DATE</label>
+            <input
+              type="date"
+              onChange={(e) => setDate(e.target.value)}
+              placeholder="Date"
+            />
+          </div>
+          <PicOfDay pictureOfdayUrl={pictureOfdayUrl} />
+        </>
       )}
     </div>
   );

@@ -1,0 +1,16 @@
+.starry-sky {
+  width: 100%;
+  height: 53vh;
+  object-fit: cover;
+}
+.error-message {
+  text-align: center;
+  width: 100%;
+}
+.moon h1 {
+  transform: translateY(700%);
+  word-spacing: 10;
+  color: var(--primary-color);
+  margin-right: auto;
+  margin-left: auto;
+}
