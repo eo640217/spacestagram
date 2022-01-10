@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 import PicOfDay from "../components/PicOfDay";
 import NasaLogo from "../components/NasaLogo";
 import Nothing from "../components/Nothing";
+// require("dotenv").config();
 
 const Home = () => {
   const [data, setData] = useState([]);
