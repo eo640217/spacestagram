@@ -14,7 +14,7 @@ import Nothing from "../components/Nothing";
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState("space");
+  const [query, setQuery] = useState("earth");
   const [date, setDate] = useState("");
   const [displayAll, setDisplayAll] = useState(true);
   const key = process.env.REACT_APP_NASA_API_KEY;
